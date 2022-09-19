@@ -117,7 +117,28 @@ ORDER BY count DESC, avg_price DESC
 
 Многотабличные запросы, оператор JOIN
 
+Объедините таблицы Class и Student_in_class с помощью внутреннего соединения по полям Class.id и Student_in_class.class. Выведите название класса (поле Class.name) и идентификатор ученика (поле Student_in_class.student).
+
 SELECT Class.name,
        Student_in_class.student
 FROM CLASS
 JOIN Student_in_class ON class.id=Student_in_class.class
+
+Дополните запрос из предыдущего задания, добавив ещё одно внутреннее соединение с таблицей Student. Объедините по полям Student_in_class.student и Student.id и вместо идентификатора ученика выведите его имя (поле first_name).
+
+SELECT Class.name,
+       student.first_name
+FROM CLASS
+JOIN Student_in_class 
+       ON class.id=Student_in_class.class
+JOIN Student 
+       ON Student_in_class.student = Student.id
+
+Выведите названия продуктов, которые покупал член семьи со статусом "son". Для получения выборки вам нужно объединить таблицу Payments с таблицей FamilyMembers по полям family_member и member_id, а также с таблицей Goods по полям good и good_id.
+
+SELECT good_name
+FROM Goods
+JOIN Payments ON good = good_id 
+JOIN FamilyMembers ON family_member = member_id 
+WHERE status = 'son'
+
