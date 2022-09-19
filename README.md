@@ -142,3 +142,8 @@ JOIN Payments ON good = good_id
 JOIN FamilyMembers ON family_member = member_id 
 WHERE status = 'son'
 
+Выведите идентификатор (поле room_id) и среднюю оценку комнаты (поле rating, для вывода используйте псевдоним avg_score), составленную на основании отзывов из таблицы Reviews.
+
+SELECT room_id, rating 
+FROM Reviews
+JOIN Reservations ON reservation_id = Reservations.id 
