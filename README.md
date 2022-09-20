@@ -148,3 +148,38 @@ SELECT room_id, AVG ( rating ) AS avg_score
 FROM Reviews
 JOIN Reservations ON reservation_id = Reservations.id 
 GROUP BY room_id 
+
+
+====
+
+
+Ограничение выборки, оператор LIMIT
+
+Отсортируйте список компаний (таблица Company) по их названию в алфавитном порядке и выведите первые две записи.
+
+
+
+
+
+
+
+====
+
+
+Вложенные SQL запросы
+
+Выведите список комнат (все поля, таблица Rooms), которые по своим удобствам (has_tv, has_internet, has_kitchen, has_air_con) совпадают с комнатой с идентификатором "11".
+
+SELECT * FROM Rooms
+WHERE ( has_tv, has_internet, has_kitchen, has_air_con )=
+(
+SELECT has_tv , has_internet , has_kitchen , has_air_con
+FROM Rooms
+WHERE ID =11
+)
+
+
+Выведите названия товаров из таблицы Goods (поле good_name), которые ещё ни разу не покупались ни одним из членов семьи (таблица Payments).
+
+SELECT good_name FROM Goods
+WHERE Goods.good_id   NOT IN (SELECT good  FROM Payments )
